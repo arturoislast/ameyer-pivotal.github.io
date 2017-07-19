@@ -1,0 +1,115 @@
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>Sample SDK Form</title>
+    <link rel="stylesheet" href="/bootstrap.min.css">
+</head>
+<body>
+<div class="row">
+    <div class="col-lg-6">
+        <form id="pl-create-cc-form" class="col-lg-3">
+            <div class="form-group">
+                <label>PayerReferenceId</label>
+                <input type="text" class="form-control" name="PayerReferenceId" value="132234">
+            </div>
+            <div class="form-group">
+                <label>PayerFirstName</label>
+                <input type="text" class="form-control" name="PayerFirstName" value="Steve">
+            </div>
+            <div class="form-group">
+                <label>PayerLastName</label>
+                <input type="text" class="form-control" name="PayerLastName" value="Smith">
+            </div>
+            <div class="form-group">
+                <label>CreditCardType</label>
+                <input type="text" class="form-control" name="CreditCardType" value="Visa">
+            </div>
+            <div class="form-group">
+                <label>CreditCardNumber</label>
+                <input type="text" class="form-control" name="CreditCardNumber" value="4444444444444448">
+            </div>
+            <div class="form-group">
+                <label>CreditCardExpMonth</label>
+                <input type="text" class="form-control" name="CreditCardExpMonth" value="12">
+            </div>
+            <div class="form-group">
+                <label>CreditCardExpYear</label>
+                <input type="text" class="form-control" name="CreditCardExpYear" value="20">
+            </div>
+            <div class="form-group">
+                <label>CreditCardCvv2</label>
+                <input type="text" class="form-control" name="CreditCardCvv2" value="123">
+            </div>
+            <div class="form-group">
+                <label>BillingFirstName</label>
+                <input type="text" class="form-control" name="BillingFirstName" value="Steve">
+            </div>
+            <div class="form-group">
+                <label>BillingLastName</label>
+                <input type="text" class="form-control" name="BillingLastName" value="Smith">
+            </div>
+            <div class="form-group">
+                <label>BillingStreetAddress</label>
+                <input type="text" class="form-control" name="BillingStreetAddress" value="123 Main">
+            </div>
+            <div class="form-group">
+                <label>BillingCity</label>
+                <input type="text" class="form-control" name="BillingCity" value="Santa Monica">
+            </div>
+            <div class="form-group">
+                <label>BillingState</label>
+                <input type="text" class="form-control" name="BillingState" value="CA">
+            </div>
+            <div class="form-group">
+                <label>BillingCountry</label>
+                <input type="text" class="form-control" name="BillingCountry" value="USA">
+            </div>
+            <div class="form-group">
+                <label>BillingZip</label>
+                <input type="text" class="form-control" name="BillingZip" value="65666">
+            </div>
+            <input type="hidden" name="RequestToken">
+            <input type="button" class="btn btn-default" value="Submit">
+
+        </form>
+    </div>
+</div>
+<script src="/paylease-sdk.js"></script>
+<script type="text/javascript">
+    (function() {
+        window.paylease = new PayLease({
+            devHost: window.location.hostname // set host path to development environment
+        });
+        var button = document.querySelector("#pl-create-cc-form input[type=button]");
+
+        button.addEventListener('click', function (e) {
+            e.preventDefault();
+
+            paylease.createCreditCard({
+                fields: {
+                    PayerReferenceId: document.querySelector('#pl-create-cc-form input[name=PayerReferenceId]').value,
+                    PayerFirstName: document.querySelector('#pl-create-cc-form input[name=PayerFirstName]').value,
+                    PayerLastName: document.querySelector('#pl-create-cc-form input[name=PayerLastName]').value,
+                    CreditCardType: document.querySelector('#pl-create-cc-form input[name=CreditCardType]').value,
+                    CreditCardNumber: document.querySelector('#pl-create-cc-form input[name=CreditCardNumber]').value,
+                    CreditCardExpMonth: document.querySelector('#pl-create-cc-form input[name=CreditCardExpMonth]').value,
+                    CreditCardExpYear: document.querySelector('#pl-create-cc-form input[name=CreditCardExpYear]').value,
+                    CreditCardCvv2: document.querySelector('#pl-create-cc-form input[name=CreditCardCvv2]').value,
+                    BillingFirstName: document.querySelector('#pl-create-cc-form input[name=BillingFirstName]').value,
+                    BillingLastName: document.querySelector('#pl-create-cc-form input[name=BillingLastName]').value,
+                    BillingStreetAddress: document.querySelector('#pl-create-cc-form input[name=BillingStreetAddress]').value,
+                    BillingCity: document.querySelector('#pl-create-cc-form input[name=BillingCity]').value,
+                    BillingState: document.querySelector('#pl-create-cc-form input[name=BillingState]').value,
+                    BillingCountry: document.querySelector('#pl-create-cc-form input[name=BillingCountry]').value,
+                    BillingZip: document.querySelector('#pl-create-cc-form input[name=BillingZip]').value,
+                    RequestToken: window.location.search.replace('?RequestToken=', '')
+                }
+            }, function (err, resp) {
+                console.log('error', err);
+                console.log('response', resp);
+            });
+        });
+    })();
+</script>
+</body>
+</html>
