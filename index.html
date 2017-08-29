@@ -106,7 +106,7 @@
                 }
             }, function (err, resp) {
                 console.log('error', err);
-                console.log('response', resp);
+                console.log('response', JSON.stringify(resp, null, 2));
             });
         });
     })();
