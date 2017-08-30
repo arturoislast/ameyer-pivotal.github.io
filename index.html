@@ -68,7 +68,10 @@
                 <label>BillingZip</label>
                 <input type="text" class="form-control" name="BillingZip" value="65666">
             </div>
-            <input type="hidden" name="RequestToken">
+            <div class="form-group">
+                <label>RequestToken</label>
+                <input type="text" class="form-control" name="RequestToken">
+            </div>
             <input type="button" class="btn btn-default" value="Submit">
 
         </form>
@@ -102,7 +105,7 @@
                     BillingState: document.querySelector('#pl-create-cc-form input[name=BillingState]').value,
                     BillingCountry: document.querySelector('#pl-create-cc-form input[name=BillingCountry]').value,
                     BillingZip: document.querySelector('#pl-create-cc-form input[name=BillingZip]').value,
-                    RequestToken: window.location.search.replace('?RequestToken=', '')
+                    RequestToken: document.querySelector('#pl-create-cc-form input[name=RequestToken]').value
                 }
             }, function (err, resp) {
                 console.log('error', err);
